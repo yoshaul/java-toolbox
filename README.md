@@ -1,4 +1,4 @@
-iostreams
+java-toolbox
 =========
 [![Build Status](https://travis-ci.org/yoshaul/java-toolbox.svg?branch=master)](https://travis-ci.org/yoshaul/java-toolbox)
 [![Coverage Status](https://coveralls.io/repos/yoshaul/java-toolbox/badge.svg?branch=master)](https://coveralls.io/r/yoshaul/java-toolbox?branch=master)
