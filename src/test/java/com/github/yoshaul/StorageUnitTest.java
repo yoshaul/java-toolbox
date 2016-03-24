@@ -21,6 +21,7 @@ import org.junit.Test;
 
 import static com.github.yoshaul.StorageUnit.*;
 import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Unit tests for {@link StorageUnit}.
@@ -28,7 +29,7 @@ import static org.fest.assertions.Assertions.assertThat;
  * @author Yossi Shaul
  */
 public class StorageUnitTest {
-    // four points after the digit
+    // testing for accuracy of four points after the digit
     private final Delta delta = Delta.delta(0.0001d);
 
     @Test
@@ -139,5 +140,15 @@ public class StorageUnitTest {
 
         assertThat(PETABYTES.toPB(1)).isEqualTo(1);
         assertThat(PETABYTES.toPB(1024)).isEqualTo(1024);
+    }
+
+    @Test
+    public void symbol() {
+        assertEquals("bytes", BYTES.symbol());
+        assertEquals("KB", KILOBYTES.symbol());
+        assertEquals("MB", MEGABYTES.symbol());
+        assertEquals("GB", GIGABYTES.symbol());
+        assertEquals("TB", TERABYTES.symbol());
+        assertEquals("PB", PETABYTES.symbol());
     }
 }

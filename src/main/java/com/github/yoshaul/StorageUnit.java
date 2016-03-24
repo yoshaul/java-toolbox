@@ -36,6 +36,7 @@ public enum StorageUnit {
         public double toGB(long s) { return (double) s / GB; }
         public double toTB(long s) { return (double) s / TB; }
         public double toPB(long s) { return (double) s / PB; }
+        public String symbol() { return "bytes"; }
     },
     /**
      * Storage unit representing kilobyte (1024 bytes)
@@ -47,6 +48,7 @@ public enum StorageUnit {
         public double toGB(long s) { return (double) s / MB; }
         public double toTB(long s) { return (double) s / GB; }
         public double toPB(long s) { return (double) s / TB; }
+        public String symbol() { return "KB"; }
     },
     /**
      * Storage unit representing megabyte (1024 kilobytes)
@@ -58,6 +60,7 @@ public enum StorageUnit {
         public double toGB(long s) { return (double) s / KB; }
         public double toTB(long s) { return (double) s / MB; }
         public double toPB(long s) { return (double) s / GB; }
+        public String symbol() { return "MB"; }
     },
     /**
      * Storage unit representing gigabyte (1024 megabytes)
@@ -69,6 +72,7 @@ public enum StorageUnit {
         public double toGB(long s) { return s; }
         public double toTB(long s) { return (double) s / KB; }
         public double toPB(long s) { return (double) s / MB; }
+        public String symbol() { return "GB"; }
     },
     /**
      * Storage unit representing terabyte (1024 gigabytes)
@@ -80,6 +84,7 @@ public enum StorageUnit {
         public double toGB(long s) { return s * KB; }
         public double toTB(long s) { return s; }
         public double toPB(long s) { return (double) s / KB; }
+        public String symbol() { return "TB"; }
     },
     /**
      * Storage unit representing terabyte (1024 gigabytes)
@@ -91,6 +96,7 @@ public enum StorageUnit {
         public double toGB(long s) { return s * MB; }
         public double toTB(long s) { return s * KB; }
         public double toPB(long s) { return s; }
+        public String symbol() { return "PB"; }
     };
 
     public static final long BT = 1L;
@@ -105,35 +111,40 @@ public enum StorageUnit {
      * @param s The size
      * @return  The size converted to bytes
      */
-    abstract double toBytes(long s);
+    public abstract double toBytes(long s);
     /**
      * Converts the given unit to kilobytes.
      * @param s The size
      * @return  The size converted to kilobytes
      */
-    abstract double toKB(long s);
+    public abstract double toKB(long s);
     /**
      * Converts the given unit to megabytes.
      * @param s The size
      * @return  The size converted to megabytes
      */
-    abstract double toMB(long s);
+    public abstract double toMB(long s);
     /**
      * Converts the given unit to gigabytes.
      * @param s The size
      * @return  The size converted to gigabytes
      */
-    abstract double toGB(long s);
+    public abstract double toGB(long s);
     /**
      * Converts the given unit to terabytes.
      * @param s The size
      * @return  The size converted to terabytes
      */
-    abstract double toTB(long s);
+    public abstract double toTB(long s);
     /**
      * Converts the given unit to petabytes.
      * @param s The size
      * @return  The size converted to petabytes
      */
-    abstract double toPB(long s);
+    public abstract double toPB(long s);
+
+    /**
+     * @return Symbol representing this unit (e.g., bytes, KB, GB)
+     */
+    public abstract String symbol();
 }
