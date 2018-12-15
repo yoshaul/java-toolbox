@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Yossi Shaul
+ * Copyright 2018 Yossi Shaul
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,134 +16,132 @@
 
 package com.github.yoshaul;
 
-import org.fest.assertions.Delta;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.github.yoshaul.StorageUnit.*;
-import static org.fest.assertions.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Unit tests for {@link StorageUnit}.
  *
  * @author Yossi Shaul
  */
-public class StorageUnitTest {
+class StorageUnitTest {
     // testing for accuracy of four points after the digit
-    private final Delta delta = Delta.delta(0.0001d);
+    private final double delta = 0.0001d;
 
     @Test
-    public void convertBytes() {
-        assertThat(BYTES.toBytes(0)).isEqualTo(0);
+    void convertBytes() {
+        assertEquals(BYTES.toBytes(0), 0);
 
-        assertThat(BYTES.toBytes(1)).isEqualTo(1);
-        assertThat(BYTES.toBytes(1024)).isEqualTo(1024);
+        assertEquals(BYTES.toBytes(1), 1);
+        assertEquals(BYTES.toBytes(1024), 1024);
 
-        assertThat(BYTES.toKB(1)).isEqualTo(0.00097, delta);
-        assertThat(BYTES.toKB(1587)).isEqualTo(1.5498046875, delta);
-        assertThat(BYTES.toKB(8745 * 1024)).isEqualTo(8745, delta);
+        assertEquals(BYTES.toKB(1), 0.00097, delta);
+        assertEquals(BYTES.toKB(1587), 1.5498046875, delta);
+        assertEquals(BYTES.toKB(8745 * 1024), 8745, delta);
 
-        assertThat(BYTES.toMB(0)).isEqualTo(0);
-        assertThat(BYTES.toMB(KB)).isEqualTo(0.00097656, delta);
-        assertThat(BYTES.toMB(MB)).isEqualTo(1);
-        assertThat(BYTES.toMB(8974541)).isEqualTo(8.55878925, delta);
-        assertThat(BYTES.toMB(GB)).isEqualTo(1024);
+        assertEquals(BYTES.toMB(0), 0);
+        assertEquals(BYTES.toMB(KB), 0.00097656, delta);
+        assertEquals(BYTES.toMB(MB), 1);
+        assertEquals(BYTES.toMB(8974541), 8.55878925, delta);
+        assertEquals(BYTES.toMB(GB), 1024);
 
-        assertThat(BYTES.toGB(1)).isEqualTo(0, delta);
-        assertThat(BYTES.toGB(9478)).isEqualTo(0, delta);
-        assertThat(BYTES.toGB(45612346)).isEqualTo(0.04247980, delta);
-        assertThat(BYTES.toGB(MB)).isEqualTo(0.00097656, delta);
-        assertThat(BYTES.toGB(GB)).isEqualTo(1, delta);
-        assertThat(BYTES.toGB(TB)).isEqualTo(1024, delta);
+        assertEquals(BYTES.toGB(1), 0, delta);
+        assertEquals(BYTES.toGB(9478), 0, delta);
+        assertEquals(BYTES.toGB(45612346), 0.04247980, delta);
+        assertEquals(BYTES.toGB(MB), 0.00097656, delta);
+        assertEquals(BYTES.toGB(GB), 1, delta);
+        assertEquals(BYTES.toGB(TB), 1024, delta);
 
-        assertThat(BYTES.toTB(1)).isEqualTo(0, delta);
-        assertThat(BYTES.toTB(KB)).isEqualTo(0, delta);
-        assertThat(BYTES.toTB(MB)).isEqualTo(0, delta);
-        assertThat(BYTES.toTB(GB)).isEqualTo(0.00097656, delta);
-        assertThat(BYTES.toTB(TB)).isEqualTo(1);
-        assertThat(BYTES.toTB(PB)).isEqualTo(1024);
+        assertEquals(BYTES.toTB(1), 0, delta);
+        assertEquals(BYTES.toTB(KB), 0, delta);
+        assertEquals(BYTES.toTB(MB), 0, delta);
+        assertEquals(BYTES.toTB(GB), 0.00097656, delta);
+        assertEquals(BYTES.toTB(TB), 1);
+        assertEquals(BYTES.toTB(PB), 1024);
 
-        assertThat(BYTES.toPB(1)).isEqualTo(0, delta);
-        assertThat(BYTES.toPB(KB)).isEqualTo(0, delta);
-        assertThat(BYTES.toPB(MB)).isEqualTo(0, delta);
-        assertThat(BYTES.toPB(GB)).isEqualTo(0, delta);
-        assertThat(BYTES.toPB(TB)).isEqualTo(0.00097656, delta);
-        assertThat(BYTES.toPB(PB)).isEqualTo(1);
-        assertThat(BYTES.toPB(PB * KB)).isEqualTo(1024);
+        assertEquals(BYTES.toPB(1), 0, delta);
+        assertEquals(BYTES.toPB(KB), 0, delta);
+        assertEquals(BYTES.toPB(MB), 0, delta);
+        assertEquals(BYTES.toPB(GB), 0, delta);
+        assertEquals(BYTES.toPB(TB), 0.00097656, delta);
+        assertEquals(BYTES.toPB(PB), 1);
+        assertEquals(BYTES.toPB(PB * KB), 1024);
     }
 
     @Test
-    public void convertKilobytes() {
-        assertThat(KILOBYTES.toBytes(1)).isEqualTo(KB);
-        assertThat(KILOBYTES.toBytes(KB)).isEqualTo(MB);
+    void convertKilobytes() {
+        assertEquals(KILOBYTES.toBytes(1), KB);
+        assertEquals(KILOBYTES.toBytes(KB), MB);
 
-        assertThat(KILOBYTES.toKB(1)).isEqualTo(1);
-        assertThat(KILOBYTES.toKB(1024)).isEqualTo(1024);
+        assertEquals(KILOBYTES.toKB(1), 1);
+        assertEquals(KILOBYTES.toKB(1024), 1024);
 
-        assertThat(KILOBYTES.toMB(1024)).isEqualTo(1);
-        assertThat(KILOBYTES.toGB(1024)).isEqualTo(0.00097656, delta);
-        assertThat(KILOBYTES.toTB(1024)).isEqualTo(0, delta);
-        assertThat(KILOBYTES.toPB(1024)).isEqualTo(0, delta);
+        assertEquals(KILOBYTES.toMB(1024), 1);
+        assertEquals(KILOBYTES.toGB(1024), 0.00097656, delta);
+        assertEquals(KILOBYTES.toTB(1024), 0, delta);
+        assertEquals(KILOBYTES.toPB(1024), 0, delta);
     }
 
     @Test
-    public void convertMegabytes() {
-        assertThat(MEGABYTES.toBytes(1)).isEqualTo(MB);
-        assertThat(MEGABYTES.toBytes(KB)).isEqualTo(KB * MB);
-        assertThat(MEGABYTES.toKB(1)).isEqualTo(1024);
-        assertThat(MEGABYTES.toKB(1024)).isEqualTo(1024 * 1024);
+    void convertMegabytes() {
+        assertEquals(MEGABYTES.toBytes(1), MB);
+        assertEquals(MEGABYTES.toBytes(KB), KB * MB);
+        assertEquals(MEGABYTES.toKB(1), 1024);
+        assertEquals(MEGABYTES.toKB(1024), 1024 * 1024);
 
-        assertThat(MEGABYTES.toMB(1)).isEqualTo(1);
-        assertThat(MEGABYTES.toMB(456)).isEqualTo(456);
-        assertThat(MEGABYTES.toGB(1)).isEqualTo(0.00097656, delta);
-        assertThat(MEGABYTES.toTB(1)).isEqualTo(0, delta);
-        assertThat(MEGABYTES.toPB(1024)).isEqualTo(0, delta);
+        assertEquals(MEGABYTES.toMB(1), 1);
+        assertEquals(MEGABYTES.toMB(456), 456);
+        assertEquals(MEGABYTES.toGB(1), 0.00097656, delta);
+        assertEquals(MEGABYTES.toTB(1), 0, delta);
+        assertEquals(MEGABYTES.toPB(1024), 0, delta);
     }
 
     @Test
-    public void convertGigabytes() {
-        assertThat(GIGABYTES.toBytes(1)).isEqualTo(GB);
-        assertThat(GIGABYTES.toBytes(KB)).isEqualTo(KB * GB);
-        assertThat(GIGABYTES.toKB(1)).isEqualTo(1024 * 1024);
-        assertThat(GIGABYTES.toKB(1024)).isEqualTo(1024 * 1024 * 1024);
-        assertThat(GIGABYTES.toMB(1)).isEqualTo(1024);
+    void convertGigabytes() {
+        assertEquals(GIGABYTES.toBytes(1), GB);
+        assertEquals(GIGABYTES.toBytes(KB), KB * GB);
+        assertEquals(GIGABYTES.toKB(1), 1024 * 1024);
+        assertEquals(GIGABYTES.toKB(1024), 1024 * 1024 * 1024);
+        assertEquals(GIGABYTES.toMB(1), 1024);
 
-        assertThat(GIGABYTES.toGB(1)).isEqualTo(1);
+        assertEquals(GIGABYTES.toGB(1), 1);
 
-        assertThat(GIGABYTES.toTB(1)).isEqualTo(0.00097656, delta);
-        assertThat(GIGABYTES.toPB(1024)).isEqualTo(0.00097656, delta);
-        assertThat(GIGABYTES.toPB(1)).isEqualTo(0, delta);
+        assertEquals(GIGABYTES.toTB(1), 0.00097656, delta);
+        assertEquals(GIGABYTES.toPB(1024), 0.00097656, delta);
+        assertEquals(GIGABYTES.toPB(1), 0, delta);
     }
 
     @Test
-    public void convertTerabytes() {
-        assertThat(TERABYTES.toBytes(1)).isEqualTo(TB);
-        assertThat(TERABYTES.toBytes(KB)).isEqualTo(KB * TB);
-        assertThat(TERABYTES.toKB(1)).isEqualTo(1024 * 1024 * 1024);
-        assertThat(TERABYTES.toMB(1)).isEqualTo(1024 * 1024);
-        assertThat(TERABYTES.toGB(1)).isEqualTo(1024);
+    void convertTerabytes() {
+        assertEquals(TERABYTES.toBytes(1), TB);
+        assertEquals(TERABYTES.toBytes(KB), KB * TB);
+        assertEquals(TERABYTES.toKB(1), 1024 * 1024 * 1024);
+        assertEquals(TERABYTES.toMB(1), 1024 * 1024);
+        assertEquals(TERABYTES.toGB(1), 1024);
 
-        assertThat(TERABYTES.toTB(1)).isEqualTo(1);
+        assertEquals(TERABYTES.toTB(1), 1);
 
-        assertThat(TERABYTES.toPB(1)).isEqualTo(0.00097656, delta);
-        assertThat(TERABYTES.toPB(1024)).isEqualTo(1);
+        assertEquals(TERABYTES.toPB(1), 0.00097656, delta);
+        assertEquals(TERABYTES.toPB(1024), 1);
     }
 
     @Test
-    public void convertPetabytes() {
-        assertThat(PETABYTES.toBytes(1)).isEqualTo(PB);
-        assertThat(PETABYTES.toBytes(KB)).isEqualTo(KB * PB);
-        assertThat(PETABYTES.toKB(1)).isEqualTo((double) 1024 * 1024 * 1024 * 1024);
-        assertThat(PETABYTES.toMB(1)).isEqualTo(1024 * 1024 * 1024);
-        assertThat(PETABYTES.toGB(1)).isEqualTo(1024 * 1024);
-        assertThat(PETABYTES.toTB(1)).isEqualTo(1024);
+    void convertPetabytes() {
+        assertEquals(PETABYTES.toBytes(1), PB);
+        assertEquals(PETABYTES.toBytes(KB), KB * PB);
+        assertEquals(PETABYTES.toKB(1), (double) 1024 * 1024 * 1024 * 1024);
+        assertEquals(PETABYTES.toMB(1), 1024 * 1024 * 1024);
+        assertEquals(PETABYTES.toGB(1), 1024 * 1024);
+        assertEquals(PETABYTES.toTB(1), 1024);
 
-        assertThat(PETABYTES.toPB(1)).isEqualTo(1);
-        assertThat(PETABYTES.toPB(1024)).isEqualTo(1024);
+        assertEquals(PETABYTES.toPB(1), 1);
+        assertEquals(PETABYTES.toPB(1024), 1024);
     }
 
     @Test
-    public void symbol() {
+    void symbol() {
         assertEquals("bytes", BYTES.symbol());
         assertEquals("KB", KILOBYTES.symbol());
         assertEquals("MB", MEGABYTES.symbol());
