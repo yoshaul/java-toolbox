@@ -16,26 +16,31 @@
 
 package com.github.yoshaul.os;
 
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Unit tests for {@link OsUtils}.
+ * Unit tests for {@link OsUtils} when running on Windows.
  *
  * @author Yossi Shaul
  */
-class OsUtilsTest {
+@EnabledOnOs(OS.WINDOWS)
+class OsUtilsWindowsTest {
+
+    @Test
+    void testIsWindows() {
+        assertTrue(OsUtils.isWindows());
+        assertFalse(OsUtils.isMac());
+        assertFalse(OsUtils.isLinux());
+        assertFalse(OsUtils.isUnix());    }
 
     @Test
     void testGetOsName() {
-        assertThat(OsUtils.getOsName()).isNotEmpty();
-    }
-
-    @Test
-    void testGetOsVersion() {
-        assertThat(OsUtils.getOsVersion()).isNotEmpty();
+        assertTrue(OsUtils.getOsName().contains("Windows"));
     }
 
 }

@@ -68,4 +68,15 @@ public final class OsUtils {
     public static boolean isUnix() {
         return isLinux() || isMac();
     }
+
+    /**
+     * @return An object with details about the current runtime operating system.
+     * @see OsDetails
+     */
+    public static OsDetails getOsDetails() {
+        if (isMac()) {
+            return MacOsUtils.getOsDetails();
+        }
+        return null;
+    }
 }

@@ -16,26 +16,11 @@
 
 package com.github.yoshaul.os;
 
-
-import org.junit.jupiter.api.Test;
-
-import static com.google.common.truth.Truth.assertThat;
-
 /**
- * Unit tests for {@link OsUtils}.
+ * An enumeration of operating system type family.
  *
  * @author Yossi Shaul
  */
-class OsUtilsTest {
-
-    @Test
-    void testGetOsName() {
-        assertThat(OsUtils.getOsName()).isNotEmpty();
-    }
-
-    @Test
-    void testGetOsVersion() {
-        assertThat(OsUtils.getOsVersion()).isNotEmpty();
-    }
-
+public enum OsType {
+    other, linux, windows, mac, unix, bsd
 }
