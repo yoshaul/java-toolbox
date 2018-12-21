@@ -62,5 +62,4 @@ class OsUtilsMacTest {
                     .that(details.getPrettyName()).contains("(");
         }
     }
-
 }

@@ -20,13 +20,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static com.github.yoshaul.Tests.getResourcePath;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for the {@link LinuxOsReleaseParser}.
@@ -82,13 +78,5 @@ class LinuxOsReleaseParserTest {
         assertEquals(osRelease.getVersion().get(), "14.04.5 LTS, Trusty Tahr");
         assertEquals(osRelease.getVersionId().get(), "14.04");
         assertEquals(osRelease.getIdLike().get(), "debian");
-    }
-
-    private Path getResourcePath(String resourcePath) throws URISyntaxException {
-        URL resource = getClass().getResource(resourcePath);
-        if (resource == null) {
-            throw new IllegalArgumentException("Can't find resource: " + resourcePath);
-        }
-        return Paths.get(resource.toURI());
     }
 }

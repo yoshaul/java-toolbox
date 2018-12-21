@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -33,6 +34,8 @@ import java.util.stream.Stream;
  * @see <a href="https://www.freedesktop.org/software/systemd/man/os-release.html">os-release</a>
  */
 public class LinuxOsReleaseParser {
+
+    public static final String OS_RELEASE_FILE_PATH = "/etc/os-release";
 
     public static LinuxOsRelease parseFile(Path osReleasePath) throws IOException {
         try (Stream<String> lines = Files.lines(osReleasePath, Charset.forName("UTF-8"))) {
@@ -67,6 +70,10 @@ public class LinuxOsReleaseParser {
 
     private static String removeLeadingAndTrailingQuotes(String part) {
         return part.replaceAll("^\"|\"$", "");
+    }
+
+    static boolean isOsReleaseFileExist() {
+        return Paths.get(OS_RELEASE_FILE_PATH).toFile().exists();
     }
 
     private static class Pair {

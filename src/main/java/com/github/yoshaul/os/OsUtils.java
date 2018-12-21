@@ -76,6 +76,8 @@ public final class OsUtils {
     public static OsDetails getOsDetails() {
         if (isMac()) {
             return MacOsUtils.getOsDetails();
+        } else if (isLinux()) {
+            return LinuxOsUtils.getOsDetails();
         }
         return null;
     }
