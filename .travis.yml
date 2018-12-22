@@ -3,8 +3,9 @@ language: java
 os:
   - linux
   - osx
+  - windows
 jdk:
-  - oraclejdk8
+  - openjdk8
 script: mvn install
 
 after_success:

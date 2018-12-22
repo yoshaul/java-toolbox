@@ -16,6 +16,7 @@
 
 package com.github.yoshaul.os;
 
+import com.google.common.truth.Truth;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
@@ -40,7 +41,7 @@ class OsUtilsWindowsTest {
 
     @Test
     void testGetOsName() {
-        assertTrue(OsUtils.getOsName().contains("Windows"));
+        Truth.assertThat(OsUtils.getOsName()).contains("Windows");
     }
 
 }

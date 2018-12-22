@@ -59,7 +59,7 @@ public final class OsUtils {
      * @return True if this operating system is Windows
      */
     public static boolean isWindows() {
-        return getOsName().toLowerCase().contains("Windows");
+        return getOsName().toLowerCase().contains("windows");
     }
 
     /**
