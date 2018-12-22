@@ -3,9 +3,9 @@ language: java
 os:
   - linux
   - osx
-  - windows
 jdk:
   - openjdk8
+  - openjdk11
 script: mvn install
 
 after_success:
