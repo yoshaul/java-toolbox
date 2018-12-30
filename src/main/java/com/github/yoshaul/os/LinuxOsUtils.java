@@ -30,6 +30,10 @@ import java.util.logging.Logger;
 public class LinuxOsUtils {
     private static final Logger log = Logger.getLogger(LinuxOsUtils.class.getName());
 
+    private LinuxOsUtils() {
+        // utility class
+    }
+
     public static OsDetails getOsDetails() {
         OsDetails osDetails;
         if (LinuxOsReleaseParser.isOsReleaseFileExist()) {
@@ -55,11 +59,11 @@ public class LinuxOsUtils {
     private static OsDetails buildOsDetailsFromOsReleaseFile(LinuxOsRelease osRelease) {
         String version = osRelease.getVersion().orElseGet(OsUtils::getOsVersion);
         String versionId = osRelease.getVersionId().orElse(version);
-        return new OsDetails(OsType.linux, osRelease.getPrettyName(), osRelease.getName(),
+        return new OsDetails(OsType.LINUX, osRelease.getPrettyName(), osRelease.getName(),
                 version, versionId, osRelease.getId());
     }
 
     private static OsDetails extractOsDetailsFromJvm() {
-        return new OsDetails(OsType.linux, null, null, null, null, null);
+        return new OsDetails(OsType.LINUX, null, null, null, null, null);
     }
 }

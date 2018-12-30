@@ -19,7 +19,6 @@ package com.github.yoshaul.os;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import static com.github.yoshaul.Tests.getResourcePath;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LinuxOsReleaseParserTest {
 
     @Test
-    void testReadCentOSReleaseFile() throws URISyntaxException, IOException {
+    void testReadCentOSReleaseFile() throws IOException {
         LinuxOsRelease osRelease = LinuxOsReleaseParser.parseFile(getResourcePath("/os/os-release.centos7"));
         assertNotNull(osRelease);
         assertEquals(osRelease.getId(), "centos");
@@ -45,7 +44,7 @@ class LinuxOsReleaseParserTest {
     }
 
     @Test
-    void testReadDebian9ReleaseFile() throws URISyntaxException, IOException {
+    void testReadDebian9ReleaseFile() throws IOException {
         LinuxOsRelease osRelease = LinuxOsReleaseParser.parseFile(getResourcePath("/os/os-release.debian9"));
         assertNotNull(osRelease);
         assertEquals(osRelease.getId(), "debian");
@@ -57,7 +56,7 @@ class LinuxOsReleaseParserTest {
     }
 
     @Test
-    void testReadRedHat7ReleaseFile() throws URISyntaxException, IOException {
+    void testReadRedHat7ReleaseFile() throws IOException {
         LinuxOsRelease osRelease = LinuxOsReleaseParser.parseFile(getResourcePath("/os/os-release.rhel7"));
         assertNotNull(osRelease);
         assertEquals(osRelease.getId(), "rhel");
@@ -69,7 +68,7 @@ class LinuxOsReleaseParserTest {
     }
 
     @Test
-    void testReadUbuntu14ReleaseFile() throws URISyntaxException, IOException {
+    void testReadUbuntu14ReleaseFile() throws IOException {
         LinuxOsRelease osRelease = LinuxOsReleaseParser.parseFile(getResourcePath("/os/os-release.ubuntu14"));
         assertNotNull(osRelease);
         assertEquals(osRelease.getId(), "ubuntu");

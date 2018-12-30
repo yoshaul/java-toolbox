@@ -25,6 +25,10 @@ public class MacOsUtils {
 
     static final String MAC_OS_X = "Mac OS X";
 
+    private MacOsUtils() {
+        // utility class
+    }
+
     /**
      * @return Current Mac operating system details.
      */
@@ -33,7 +37,7 @@ public class MacOsUtils {
         String versionId = OsUtils.getOsVersion();  // e.g., 10.14.2
         String version = getPrettyVersion(name, versionId);
         String prettyName = getPrettyName(name, versionId);
-        return new OsDetails(OsType.mac, prettyName, name, version, versionId, "Mac");
+        return new OsDetails(OsType.MAC, prettyName, name, version, versionId, "mac");
     }
 
     static String getPrettyVersion(String osName, String versionId) {

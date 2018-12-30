@@ -28,14 +28,14 @@ public final class OsUtils {
     }
 
     /**
-     * @return String representing the current operating system name
+     * @return String representing the current operating system name as reported by the JVM
      */
     public static String getOsName() {
         return System.getProperty("os.name");
     }
 
     /**
-     * @return String representing the current operating system version
+     * @return String representing the current operating system version as reported by the JVM
      */
     public static String getOsVersion() {
         return System.getProperty("os.version");
@@ -78,7 +78,10 @@ public final class OsUtils {
             return MacOsUtils.getOsDetails();
         } else if (isLinux()) {
             return LinuxOsUtils.getOsDetails();
+        } else if (isWindows()) {
+            return WindowsOsUtils.getOsDetails();
+        } else {
+            return new OsDetails(OsType.OTHER, getOsName(), getOsName(), getOsVersion(), getOsVersion(), "unknown");
         }
-        return null;
     }
 }

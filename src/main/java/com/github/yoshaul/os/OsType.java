@@ -22,5 +22,5 @@ package com.github.yoshaul.os;
  * @author Yossi Shaul
  */
 public enum OsType {
-    other, linux, windows, mac, unix, bsd
+    OTHER, LINUX, WINDOWS, MAC, UNIX, BSD
 }

@@ -17,9 +17,13 @@
 package com.github.yoshaul.os;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import static com.github.yoshaul.os.MacOsUtils.*;
 import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * @author Yossi Shaul
@@ -72,5 +76,23 @@ class MacOsUtilsTest {
     void testPrettyNameNonMacOsX() {
         String prettyVersion = getPrettyName("Mac OS", "10.9");
         assertThat(prettyVersion).isEqualTo("Mac OS 10.9");
+    }
+
+    @Test
+    @EnabledOnOs(OS.MAC)
+    void testMacOsDetails() {
+        OsDetails details = MacOsUtils.getOsDetails();
+        assertNotNull(details);
+        assertThat(details.getType()).isEqualTo(OsType.MAC);
+        assertThat(details.getName()).contains("Mac");
+        assertThat(details.getPrettyName()).contains("Mac");
+        assertThat(details.getPrettyName()).contains(details.getVersion());
+        assertThat(details.getVersion()).isNotEmpty();
+        assertThat(details.getVersionId()).isNotEmpty();
+        assertThat(details.getDistribution()).isEqualTo("mac");
+        if (details.getName().startsWith(MAC_OS_X)) {
+            assertWithMessage("Expected os codename in pretty name")
+                    .that(details.getPrettyName()).contains("(");
+        }
     }
 }
